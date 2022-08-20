@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+"""Simple helper function"""
+
+
+def index_range(page, page_size):
+    """return a tuple of size two containing a start index and an end index
+    corresponding to the range of indexes to return in a list for those
+    particular pagination parameters"""
+    last = page * page_size
+    first = last - page_size
+    tup = ()
+    tup = list(tup)
+    tup.insert(-1, last)
+    tup.insert(0, first)
+    tup = tuple(tup)
+    return (tup)
