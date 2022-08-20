@@ -50,4 +50,4 @@ class Server:
             return []
         rang = index_range(page, page_size)
         rang = list(rang)
-        return self.dataset()[rang[0]: rang[-1]]
+        return (self.dataset()[rang[0]: rang[-1]])
