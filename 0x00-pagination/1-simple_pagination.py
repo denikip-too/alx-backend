@@ -42,7 +42,7 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """return the appropriate page of the dataset"""
-        assert (page > 0 and isinstance(page, int))
+        assert (isinstance(page, int) and page > 0)
         assert (isinstance(page_size, int) and page_size > 0)
         rang = ()
         self.dataset()
@@ -50,4 +50,4 @@ class Server:
             return []
         rang = index_range(page, page_size)
         rang = list(rang)
-        return (self.dataset()[rang[0]: rang[-1]])
+        return self.dataset()[rang[0]: rang[-1]]
