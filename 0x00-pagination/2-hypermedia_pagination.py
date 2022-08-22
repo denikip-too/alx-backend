@@ -55,15 +55,11 @@ class Server:
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
         """returns a dictionary containing the following key-value pairs"""
-        rang = ()
-        rang = index_range(page, page_size)
-        rang = list(rang)
         total = self.dataset()
         total_pages = math.ceil(len(total) / page_size)
         next_page = (page + 1) if (page + 1) < total_pages else None
         prev_page = (page - 1) if (page - 1) > 1 else None
         data = self.get_page(page, page_size)
-        prev_page = page - 1 
         hyper = {
                 'page_size': page_size,
                 'page': page,
