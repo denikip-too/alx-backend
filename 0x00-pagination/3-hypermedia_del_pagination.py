@@ -43,7 +43,8 @@ class Server:
         """return a dictionary"""
         dataset = self.dataset()
         total_pages = math.ceil(len(dataset)) - 1
-        assert (index >= 0 and index < total_pages and isinstance(page_size, int))
+        assert (index >= 0 and index < total_pages and isinstance(
+            page_size, int))
         next_index = index + page_size
         last = page_size
         first = index
