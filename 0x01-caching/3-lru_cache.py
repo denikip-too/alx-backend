@@ -15,10 +15,9 @@ class LRUCache(BaseCaching):
     def put(self, key, item):
         """assign to the dictionary self.cache_data the item value for the
         key key"""
-        if key or item in self.cache_data is None:
-            pass
-        self.cache_data[key] = item
-        self.cache_data.move_to_end(key)
+        if key is not None and item is not None:
+            self.cache_data[key] = item
+            self.cache_data.move_to_end(key)
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             for key, item in self.cache_data.items():
                 print("DISCARD: {}".format(key))
