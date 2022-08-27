@@ -16,7 +16,7 @@ class LFUCache(BaseCaching):
     def put(self, key, item):
         """assign to the dictionary self.cache_data the item value for the
         key key"""
-        if key or item in self.cache_data is None:
+        if key is not None and item is not None:
             pass
         if key in self.cache_data:
             self._update(key, item)
