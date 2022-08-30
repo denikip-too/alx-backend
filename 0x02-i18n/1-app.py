@@ -18,7 +18,6 @@ class config(object):
         """set Babel’s default locale ("en") and timezone ("UTC")"""
         self._default_locale = default_locale
         self._default_timezone = default_timezone
-        self.app = app
 
     @property
     def default_timezone(self):
