@@ -14,13 +14,11 @@ class config(object):
 
     LANGUAGES = ['en', 'fr']
 
-    def __init__(self, app=None default_locale='en', default_timezone='UTC'):
+    def __init__(self, default_locale='en', default_timezone='UTC'):
         """set Babel’s default locale ("en") and timezone ("UTC")"""
         self._default_locale = default_locale
         self._default_timezone = default_timezone
         self.app = app
-        if app is not None:
-            self.init_app(app)
 
     @property
     def default_timezone(self):
@@ -39,4 +37,5 @@ class config(object):
     @app.route('/')
     def local_time():
         """display local time"""
-        return (render_template('1-index.html', utc_dt=self.default_timezone()))
+        return (render_template(
+            '1-index.html', utc_dt=self.default_timezone()))
