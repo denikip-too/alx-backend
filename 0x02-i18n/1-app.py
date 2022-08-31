@@ -12,13 +12,13 @@ class Config(object):
 
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE ='UTC'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 app.config.from_object('Config')
 
 
-@app.route('/'
+@app.route('/', methods=['GET'])
 def home():
     """return simple outputs"""
     return render_template('1-index.html')
