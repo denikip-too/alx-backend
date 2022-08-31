@@ -7,4 +7,4 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     """return simple outputs"""
-    return render_template('index.html')
+    return render_template('0-index.html')
