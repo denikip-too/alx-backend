@@ -21,7 +21,7 @@ app.config.from_object(Config)
 @app.route('/', methods=['GET'])
 def home():
     """return simple outputs"""
-    return render_template('1-index.html')
+    return render_template('3-index.html')
 
 
 @babel.localeselector
