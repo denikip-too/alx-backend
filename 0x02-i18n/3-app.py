@@ -28,7 +28,3 @@ def home():
 def get_locale():
     """Get locale from request"""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
-flask(_('%(home_title)', home_title=home_title))
-flask(_('%(home_header)', home_header=home_header))
