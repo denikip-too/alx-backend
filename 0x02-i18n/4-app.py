@@ -19,13 +19,13 @@ app.config.from_object(Config)
 
 
 @app.route('/', methods=['GET'])
-def home() -> str:
+def home():
     """return simple outputs"""
     return render_template('3-index.html')
 
 
 @babel.localeselector
-def get_locale() -> str:
+def get_locale():
     """Get locale from request"""
     locale = request.args.get('locale')
     if locale in app.config['LANGUAGES']:
