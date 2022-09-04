@@ -27,4 +27,3 @@ msgstr "Welcome to Holberton"
 #: templates/6-index.html:7 templates/7-index.html:7
 msgid "home_header"
 msgstr "Hello world!"
-
