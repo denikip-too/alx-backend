@@ -30,16 +30,31 @@ users = {
 @app.route('/', methods=['GET'])
 def home():
     """return simple outputs"""
-    return render_template('5-index.html')
+    return render_template('index.html')
 
 
 @babel.localeselector
 def get_locale():
     """Get locale from request"""
     locale = request.args.get('locale')
+    if users["locale"] is not None:
+        return (users["locale"])
     if locale in app.config['LANGUAGES']:
         return (locale)
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+@babel.timezoneselector
+def get_timezone():
+    """Infer appropriate time zone"""
+    default = app.config['BABEL_DEFAULT_TIMEZONE']
+    timezone = pytz.timezone('users["timezone"]')
+    try:
+        if users["timezone"] is not None:
+            return (users["timezone"])
+    except pytz.exceptions.UnknownTimeZoneError:
+        return ("validation fail")
+    return (app.config['BABEL_DEFAULT_TIMEZONE'])
 
 
 def get_user() -> Union[dict, None]:

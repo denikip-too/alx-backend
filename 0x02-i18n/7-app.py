@@ -30,7 +30,7 @@ users = {
 @app.route('/', methods=['GET'])
 def home():
     """return simple outputs"""
-    return render_template('3-index.html')
+    return render_template('7-index.html')
 
 
 @babel.localeselector
