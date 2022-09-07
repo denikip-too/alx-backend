@@ -41,8 +41,13 @@ users = {
 }
 
 
-def get_user():
+def get_user() -> Union[dict, None]:
     """returns a user dictionary"""
+    try:
+        login_as = request.args.get('login_as', None)
+        user = users[int(login_as)]
+    except Exception:
+        user = None
 
 
 @app.before_request
