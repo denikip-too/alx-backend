@@ -2,6 +2,7 @@
 """Basic Babel setup"""
 from flask_babel import Babel
 from pytz import timezone, UTC
+from typing import Union
 from flask import Flask, request, render_template
 app = Flask(__name__, template_folder='templates')
 babel = Babel(app)
@@ -53,4 +54,4 @@ def get_user() -> Union[dict, None]:
 @app.before_request
 def before_request():
     """Define a before_request"""
-    flask.g.user = get_user()
+    g.user = get_user()
