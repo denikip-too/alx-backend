@@ -7,10 +7,10 @@
 		<h1>{{ _('home_header') }}</h1>
 		{% if g.user %}
 		<p>{{ _('logged_in_as', username=g.user.name) }}</p>
-		<p>{{ _('current_time_is', current_time=timezone) }}</p>
+		<p>{{ _('current_time_is', current_time=default) }}</p>
 		{% else %}
 		<p>{{ _('not_logged_in') }}</p>
-		<p>{{ _('current_time_is', current_time=timezone) }}</p>
+		<p>{{ _('current_time_is', current_time=default) }}</p>
 		{% endif %}
 	</body>
 </html>
