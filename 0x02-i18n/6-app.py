@@ -37,19 +37,11 @@ def home():
 def get_locale():
     """Get locale from request"""
     locale = request.args.get('locale')
-    if users["locale"] is not None:
-        return (users["locale"])
+    if g.user.get("locale") is not None:
+        return (locale)
     if locale in app.config['LANGUAGES']:
         return (locale)
     return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
-users = {
-    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
-    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
-    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
-}
 
 
 def get_user() -> Union[dict, None]:

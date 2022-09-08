@@ -31,12 +31,6 @@ users = {
 @app.route('/', methods=['GET'])
 def home():
     """return simple outputs"""
-    return render_template('index.html')
-
-
-@app.route('/', methods=['GET'])
-def current_deafault_time():
-    """display the current time on the home page in the default format"""
     current_time = datetime.now(timezone.utc)
     return render_template('index.html', current_time)
 

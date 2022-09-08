@@ -37,8 +37,8 @@ def home():
 def get_locale():
     """Get locale from request"""
     locale = request.args.get('locale')
-    if users["locale"] is not None:
-        return (users["locale"])
+    if g.user.get("locale") is not None:
+        return (locale)
     if locale in app.config['LANGUAGES']:
         return (locale)
     return request.accept_languages.best_match(app.config['LANGUAGES'])
@@ -47,12 +47,12 @@ def get_locale():
 @babel.timezoneselector
 def get_timezone():
     """Infer appropriate time zone"""
-    timezone = pytz.timezone('users["timezone"]')
+    timezone = request.args.get("timezone")
     try:
-        if users["timezone"] is not None:
-            return (users["timezone"])
+        if g.user.get("timezone") is not None:
+            return (timezone)
     except pytz.exceptions.UnknownTimeZoneError:
-        return ("validation fail")
+        timezone = "UTC"
     return (app.config['BABEL_DEFAULT_TIMEZONE'])
 
 
