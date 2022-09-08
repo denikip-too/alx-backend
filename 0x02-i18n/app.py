@@ -2,6 +2,7 @@
 """Basic Babel setup"""
 from flask_babel import Babel
 from pytz import timezone, UTC
+from datetime import datetime, timezone
 from typing import Union
 from flask import Flask, request, render_template
 app = Flask(__name__, template_folder='templates')
@@ -33,12 +34,19 @@ def home():
     return render_template('index.html')
 
 
+@app.route('/', methods=['GET'])
+def current_deafault_time():
+    """display the current time on the home page in the default format"""
+    current_time = datetime.now(timezone.utc)
+    return render_template('index.html', current_time)
+
+
 @babel.localeselector
 def get_locale():
     """Get locale from request"""
     locale = request.args.get('locale')
-    if users["locale"] is not None:
-        return (users["locale"])
+    if g.user.get("locale") is not None:
+        return (locale)
     if locale in app.config['LANGUAGES']:
         return (locale)
     return request.accept_languages.best_match(app.config['LANGUAGES'])
@@ -47,13 +55,12 @@ def get_locale():
 @babel.timezoneselector
 def get_timezone():
     """Infer appropriate time zone"""
-    default = app.config['BABEL_DEFAULT_TIMEZONE']
-    timezone = pytz.timezone('users["timezone"]')
+    timezone = request.args.get("timezone")
     try:
-        if users["timezone"] is not None:
-            return (users["timezone"])
+        if g.user.get("timezone") is not None:
+            return (timezone)
     except pytz.exceptions.UnknownTimeZoneError:
-        return ("validation fail")
+        timezone = "UTC"
     return (app.config['BABEL_DEFAULT_TIMEZONE'])
 
 
